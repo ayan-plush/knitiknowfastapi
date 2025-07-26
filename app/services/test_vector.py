@@ -1,5 +1,5 @@
-from app.utils.save_vectors import save_vectorized_article
-import requests
+# from app.utils.save_vectors import save_vectorized_article
+# import requests
 
 # def vectorizeArticle():
 #     article = {

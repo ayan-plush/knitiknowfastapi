@@ -1,12 +1,13 @@
 from fastapi import APIRouter
 from app.models.schemas import ItemList
 from app.models.schemas import MinisterRequest
+from app.models.schemas import TextRequest
 from app.services.scrape_google_news import scrape_google_news
 from app.services.scraper_toi import scraper_toi
 from app.services.playwright_scraping_prs import playwright_scraping_prs
 from app.services.playwright_scraping_prs import playwright_scraping_prs
 from app.services.playwright_scraping_myneta import scrape_myneta_data
-from app.services.test_vector import vectorizeArticle
+# from app.services.test_vector import vectorizeArticle
 from app.models.schemas import MinisterInput
 import requests
 router = APIRouter()
@@ -29,6 +30,6 @@ def scrape_myneta(input_data: MinisterInput):
     return {"result": result}
 
 @router.post("/vectorTest")
-def vectorizeArticle(text: str):
-    response = requests.post("http://ml:8001/vectorize", json={"text": text})
+def vectorizeArticle(req: TextRequest):
+    response = requests.post("http://ml:8001/vectorize", json={"text": req.text})
     return response.json()["embedding"]

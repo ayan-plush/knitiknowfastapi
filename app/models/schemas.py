@@ -7,6 +7,10 @@ class Post(BaseModel):
     published: bool = True
     rating: Optional[int] = None
 
+class TextRequest(BaseModel):
+    text: str
+
+
 class ItemList(BaseModel):
     ministers: list[str]
     
