@@ -8,6 +8,7 @@ from app.services.playwright_scraping_prs import playwright_scraping_prs
 from app.services.playwright_scraping_myneta import scrape_myneta_data
 from app.services.test_vector import vectorizeArticle
 from app.models.schemas import MinisterInput
+import requests
 router = APIRouter()
 
 @router.post("/scrapegn")
@@ -28,6 +29,6 @@ def scrape_myneta(input_data: MinisterInput):
     return {"result": result}
 
 @router.post("/vectorTest")
-def vectorTest():
-    result = vectorizeArticle()
-    return {result}
+def vectorizeArticle(text: str):
+    response = requests.post("http://ml:8001/vectorize", json={"text": text})
+    return response.json()["embedding"]

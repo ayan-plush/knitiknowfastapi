@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+transformers==4.30.0
+huggingface_hub==0.14.1
+sentence-transformers==2.2.2
+torch==1.13.1
+numpy==1.26
